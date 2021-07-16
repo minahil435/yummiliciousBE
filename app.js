@@ -22,6 +22,7 @@ mongoose
 const ErrorMessageHandlerClass = require("./routes/utils/ErrorMessageHandlerClass");
 const errorController = require("./routes/utils/errorController");
 const userRouter = require("./routes/user/userRouter");
+const recipeRouter = require("./routes/recipe/recipeRouter");
 
 // const limiter = rateLimit({
 //     max: 20,
@@ -40,6 +41,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/api/user", userRouter);
+app.use("/api/recipe",recipeRouter)
 
 app.all("*", function (req, res, next) {
     next(

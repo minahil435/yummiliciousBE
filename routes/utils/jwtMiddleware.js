@@ -8,8 +8,8 @@ async function checkJwtToken(req, res, next) {
       let jwtToken = req.headers.authorization.slice(7);
 
       let decodedJwt = jwt.verify(jwtToken, process.env.PRIVATE_JWT_KEY);
-      console.log(decodedJwt);
-
+      //console.log(decodedJwt);
+      res.locals.decodedJwt = decodedJwt;
       next();
       //console.log(decodedJwt);
       //console.log(decodedJwt.message);
@@ -26,3 +26,4 @@ async function checkJwtToken(req, res, next) {
 }
 
 module.exports = checkJwtToken;
+
