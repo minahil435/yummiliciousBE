@@ -11,8 +11,8 @@ const getAllRecipes = async (req, res) => {
                 model: Recipe,
                 select: "-__v",
             })
-            .select("-email -password -firstName -lastName -__v -_id -username");
-
+            .select("-email -password  -__v -_id -userImage");
+        console.log(payload)
         res.json(payload);
     } catch (e) {
         res.status(500).json({ e: e, message: e.message });
@@ -58,7 +58,7 @@ const alreadylikedRecipe = async (req, res) => {
             model: Recipe,
             select: "-__v",
         })
-        .select("-email -password -firstName -lastName -__v -_id -username");
+        .select("-firstName -lastName -__v -_id ");
 
         let found = false
 

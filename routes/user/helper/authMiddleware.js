@@ -31,7 +31,7 @@ const {
   function checkIsAlphanumericFunc(req, res, next) {
     const { errorObj } = res.locals;
     if (!checkIsAlphanumeric(req.body.username)) {
-      errorObj.usernameError = "username can only have characters and numbers";
+      errorObj.Error = "username can only have characters and numbers";
     }
   
     next();

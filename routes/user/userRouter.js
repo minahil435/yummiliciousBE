@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({ storage: storage , limits :{filesize: 1024 * 1024 * 5} })
+const upload = multer({ storage: storage , limits :{filesize: 1024 * 1024 * 5}})
 
 const { signup, login } = require("./controller/userController");
 const checkIsUndefined = require("./helper/checkIsUndefined")

@@ -38,12 +38,8 @@ async function signup(req, res, next) {
     );
 
     res.json({ message: "success", payload: jwtToken });
-    // res.json({ message: "success - user created" });
+
   } catch (e) {
-    // console.log(e);
-    // console.log(e.message);
-    //res.status(500).json({ message: "error", error: e });
-    //console.log("1");
     next(e);
   }
 }
