@@ -3,10 +3,12 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../model/User");
 
-async function signup(req, res, next) {
-  const { username, email, password, firstName, lastName } = req.body;
 
+async function signup(req, res, next) {
+  const { email, password } = req.body;
   const { errorObj } = res.locals;
+
+  console.log(req.file.path)
 
   if (Object.keys(errorObj).length > 0) {
     return res.status(500).json({ message: "failure", payload: errorObj });
@@ -17,11 +19,9 @@ async function signup(req, res, next) {
     let hashedPassword = await bcrypt.hash(password, salt);
 
     const createdUser = new User({
-      firstName,
-      lastName,
       email,
-      username,
       password: hashedPassword,
+      userImage: req.file.path
     });
 
     let newUser = await createdUser.save();
@@ -29,6 +29,7 @@ async function signup(req, res, next) {
     let jwtToken = jwt.sign(
       {
         email: newUser.email,
+        userImage: newUser.userImage
       },
       process.env.PRIVATE_JWT_KEY,
       {
@@ -74,9 +75,11 @@ async function login(req, res) {
           payload: "Please check your email and password",
         });
       } else {
+        console.log(foundUser)
         let jwtToken = jwt.sign(
           {
             email: foundUser.email,
+            userImage: foundUser.userImage
           },
           process.env.PRIVATE_JWT_KEY,
           {
