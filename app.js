@@ -9,7 +9,7 @@ require("dotenv").config();
 var mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://localhost:27017/yummilicousbe", {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
